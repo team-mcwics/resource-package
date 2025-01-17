@@ -1,5 +1,5 @@
 # Introduction to Using APIs with .NET
-describe here, explain backend webdevelopment
+APIs play a crucial role in allowing different systems to communicate and share data. When working with .NET, APIs are often used to fetch data from external services, integrate third-party tools, or interact with remote systems. This guide will walk you through creating a weather application using APIs in .NET for backend development!
 
 ## What is an API?
 
@@ -8,40 +8,42 @@ An API, or Application Programming Interface, allows different software applicat
 You can think of an API as a waiter in a restaurant. You (the user) place an order, the waiter (API) takes your request to the kitchen (system) and brings back the result (data).
 
 ### Common Examples of APIs
-* Weather services (e.g., OpenWeatherMap)
-* Payment gateways (e.g., PayPal, Stripe)
-* Social media platforms (e.g., Twitter API, Facebook API)
+- Weather services (e.g., OpenWeatherMap)
+- Payment gateways (e.g., PayPal, Stripe)
+- Social media platforms (e.g., Twitter API, Facebook API)
 
 ## What is .NET
-.NET is an open-source platform developed by Microsoft that allows you to build applications for web, mobile, desktop, gaming, and more. It provides tools, libraries, and languages (such as C#) to create robust applications. You can learn more about .NET and its capabilities here https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet 
+.NET is an open-source platform developed by Microsoft that allows you to build applications for web, mobile, desktop, gaming, and more. It provides tools, libraries, and languages (such as C#) to create robust applications. You can learn more about .NET and its capabilities [here](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet).
 
 ### Why Learn to Use APIs with .NET?
-* To fetch real-time data, such as weather updates or stock prices
-* To integrate third-party services, like sending emails or handling payments
-* To make your applications more dynamic and interactive
+
+- Fetch real-time data, such as weather updates or stock prices
+- Integrate third-party services, like sending emails or handling payments
+- Make your applications more dynamic and interactive
 
 ## What is Backend Web Development?
 
 Backend web development refers to the server-side logic and functionality that powers websites and web apps. It involves:
-* Processing Requests: Handling data from users or external systems.
-* Interfacing with Databases: Storing, retrieving, and managing data efficiently
-* Business Logic: Implementing the rules and operations specific to the application’s goals
-* APIs: Providing endpoints for frontend applications or other services to interact with
+- **Processing Requests**: Handling data from users or external systems.
+- **Interfacing with Databases**: Storing, retrieving, and managing data efficiently.
+- **Business Logic**: Implementing the rules and operations specific to the application’s goals.
+- **APIs**: Providing endpoints for frontend applications or other services to interact with.
 
-Some commonly used tools for backend web development are .NET, Node.js, Django, and others are commonly used for backend development.
+Some commonly used tools for backend web development are .NET, Node.js, and Django.
 
 ## Let's Get Started
 
 ### Setting Up Your Development Environment
-1.	Install the .NET SDK (Software Development Kit) from dotnet.microsoft.com.
-2.	Use an IDE like Visual Studio or Visual Studio Code
-3.	Make sure you have a basic understanding of C# programming. You can find a tutorial here https://dotnet.microsoft.com/en-us/learn/csharp 
+
+1. Install the .NET SDK (Software Development Kit) from [dotnet.microsoft.com](https://dotnet.microsoft.com/en-us).
+2. Use an IDE like Visual Studio or Visual Studio Code.
+3. Make sure you have a basic understanding of C# programming. You can find a tutorial [here](https://dotnet.microsoft.com/en-us/learn/csharp).
 
 ## Creating Your First Project
 
 1. Set up a .NET Project
 
-```
+```bash
 dotnet new console -n WeatherApp
 cd WeatherApp
 ```
@@ -50,7 +52,7 @@ cd WeatherApp
 
 Install Newtonsoft.Json for JSON parsing: 
 
-```
+```bash
 dotnet add package Newtonsoft.Json
 ```
 
@@ -58,13 +60,13 @@ dotnet add package Newtonsoft.Json
 
 Now we can get started with creating a weather app that fetches hourly temperature data for the next 7 days using the Open-Meteo API. An important thing to consider when using APIs is what the formatting of its payload is. Most web APIs use JSON formatting, which allows us to parse our retrieved data easily and format it in a more user-friendly fashion. 
 
-You can learn more about JSON formatting here: https://www.w3schools.com/js/js_json_intro.asp. 
+You can learn more about JSON formatting [here](https://www.w3schools.com/js/js_json_intro.asp). 
 
 ## Payload Example
 
 The Open-Meteo API provides a JSON response like the following:
 
-```
+```json
 {
   "latitude": 52.52,
   "longitude": 13.419998,
@@ -85,7 +87,7 @@ The Open-Meteo API provides a JSON response like the following:
 
 Let's navitage to the file titled `Program.cs`. You should see some autogenerated code that looks like this:
 
-```
+```cs
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 ```
@@ -96,20 +98,17 @@ You can go ahead and delete these lines.
 
 Start by importing the namespaces required for our application. These provide the necessary tools to interact with the API, parse the response, and perform asynchronous operations. 
 
-```
+```cs
 using System;                   
 using System.Net.Http;         
 using System.Threading.Tasks; 
 using Newtonsoft.Json.Linq; 
 ```
 
-* System: This namespace is fundamental for any .NET application. It provides basic classes and functionalities such as console input/output, string manipulation, and data type handling.
-
-* System.Net.Http: This namespace is essential for making HTTP requests, enabling our app to communicate with the Open-Meteo API.
-
-* System.Threading.Tasks: Asynchronous programming is critical for making non-blocking API calls. This namespace provides support for async and await keywords.
-
-* Newtonsoft.Json.Linq: This library simplifies working with JSON data by allowing us to parse the API response into objects we can easily manipulate.
+- System: This namespace is fundamental for any .NET application. It provides basic classes and functionalities such as console input/output, string manipulation, and data type handling.
+- System.Net.Http: This namespace is essential for making HTTP requests, enabling our app to communicate with the Open-Meteo API.
+- System.Threading.Tasks: Asynchronous programming is critical for making non-blocking API calls. This namespace provides support for async and await keywords.
+- Newtonsoft.Json.Linq: This library simplifies working with JSON data by allowing us to parse the API response into objects we can easily manipulate.
 
 #### Step 2: Setting Up the Main Method
 
@@ -117,7 +116,7 @@ Next, define the entry point of the application using the Main method. This is w
 
 The `Program` class serves as the starting place where the application begins execution. This is a standard convention in C#, and typically, it contains the `Main` method where we implement the program's logic.
 
-```
+```cs
 class Program
 {
     static async Task Main(string[] args) { }
@@ -125,9 +124,9 @@ class Program
 ```
 #### Step 3: Defining the API URL
 
-Define a string inside the `Main` method, that will contain the url of the API. The apiUrl string includes the endpoint and query parameters such as latitude, longitude, and hourly temperature data. Checkout the Open-Meteo API documentation to see how you can change your url to retrieve different data! https://open-meteo.com/en/docs#latitude=45.5088&longitude=-73.5878&current=&minutely_15=&hourly=temperature_2m&daily=&models= 
+Define a string inside the `Main` method, that will contain the url of the API. The apiUrl string includes the endpoint and query parameters such as latitude, longitude, and hourly temperature data. Checkout the [Open-Meteo API documentation](https://open-meteo.com/en/docs#latitude=45.5088&longitude=-73.5878&current=&minutely_15=&hourly=temperature_2m&daily=&models=) to see how you can change your url to retrieve different data!  
 
-```
+```cs
 string apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m";
 ```
 
@@ -135,7 +134,7 @@ string apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude
 
 Create an instance of the HttpClient class to send HTTP requests and receive responses from APIs. Wrapping it in a 'using' statement ensures proper disposal of resources once the client is no longer needed. This is essential for managing memory and network resources effectively in the application.
 
-```
+```cs
  using (HttpClient client = new HttpClient()) {}
 ```
 
@@ -143,7 +142,7 @@ Create an instance of the HttpClient class to send HTTP requests and receive res
 
 Inside the `using` block, we can make our GET request to the API.
 
-```
+```cs
 HttpResponseMessage response = await client.GetAsync(apiUrl);
 ```
 
@@ -153,7 +152,7 @@ The GetAsync method sends a GET request to the API endpoint. The await keyword e
 
 If the response status code indicates success (e.g., 200 OK), read the content as a JSON-formatted string. We want to proccess the response and format all of our data inside the `using` block.
 
-```
+```cs
 if (response.IsSuccessStatusCode)
 {
     string json = await response.Content.ReadAsStringAsync();
@@ -176,7 +175,7 @@ dotnet run
 
 Extract specific fields (temperature_2m and time) from the JSON object. Then, loop through the data at 24-hour intervals to display a daily summary for the week.
 
-```
+```cs
 // Display 7-day forecast summary
 Console.WriteLine("\n7-Day Forecast:");
 var temperatures = data["hourly"]["temperature_2m"];
@@ -194,6 +193,7 @@ Run the project again, and notice how much more user-friendly the output is now!
 
 If an API request fails, your application can break without proper error handling. Let's add a simple `else` branch to ensure we are notified of any failures, and handle them accordingly.
 
+```cs
 if (response.IsSuccessStatusCode)
 {
     ...
@@ -224,15 +224,16 @@ Each type of request informs the server what action to perform.
 
 HTTP response codes indicate the result of an HTTP request. Some common ones include:
 
-# 200 OK: The request was successful, and the server has returned the requested data.
-# 201 Created: The resource was successfully created.
-# 400 Bad Request: The server cannot process the request due to incorrect syntax.
-# 401 Unauthorized: The request lacks valid authentication credentials.
-# 404 Not Found: The requested resource could not be found.
-# 500 Internal Server Error: The server encountered an error while processing the request.
+* 200 OK: The request was successful, and the server has returned the requested data.
+* 201 Created: The resource was successfully created.
+* 400 Bad Request: The server cannot process the request due to incorrect syntax.
+* 401 Unauthorized: The request lacks valid authentication credentials.
+* 404 Not Found: The requested resource could not be found.
+* 500 Internal Server Error: The server encountered an error while processing the request.
 
 
 ## Resources
-* https://learn.microsoft.com/en-ca/training/paths/build-dotnet-applications-csharp/?WT.mc_id=dotnet-35129-website 
-* https://dotnet.microsoft.com/en-us/apps/aspnet 
-* https://free-apis.github.io/#/ 
+- [Build .NET Applications with C#](https://learn.microsoft.com/en-ca/training/paths/build-dotnet-applications-csharp/?WT.mc_id=dotnet-35129-website)
+- [ASP.NET on .NET](https://dotnet.microsoft.com/en-us/apps/aspnet)
+- [Free APIs](https://free-apis.github.io/#/)
+
