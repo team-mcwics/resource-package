@@ -1,6 +1,6 @@
 # resource-package
 
-## Table of Contents
+# Table of Contents
 - [Figma & UI/UX Design](#figma--uiux-design)
     - [UI/UX Design]([#uiux-design)
     - [Figma](#figma)
