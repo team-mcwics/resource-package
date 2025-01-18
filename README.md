@@ -1,4 +1,10 @@
-# resource-package
+# Hack McWiCS 2025: Resource Package Guide 💻
+
+Welcome to the **Hack McWiCS 2025 Resource Package**! This guide is crafted to help you hit the ground running with your hackathon project. Whether this is your first hackathon or you're looking on exploring new technologies, you'll find a variety of tools, tutorials, and best practices to support you.
+
+If you’re stuck on anything, don’t be scared to ask for help from our mentors. They’re here to support you all throughout the weekend!! There are no dumb questions (like actually)!
+
+Check the **Table of Contents** for a comprehensive overview of the topics covered!
 
 # Table of Contents
 - [Figma & UI/UX Design](#figma--uiux-design)
