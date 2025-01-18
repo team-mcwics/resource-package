@@ -18,6 +18,9 @@
 - [GameDev with PyGame](#gamedev-with-pygame)
     - [What is PyGame](#what-is-pygame)
     - [Creating your First PyGame Project](#creating-your-first-pygame-project)
+- [Databases with Java Spring Boot & PostgreSQL](#databases-with-java-spring-boot--postgresql)
+    - [What is a Database? Spring Boot? PostgreSQL?](#what-is-a-database-java-spring-boot-postgresql)
+    - [Creating your First Java Spring Boot & PostgreSQL project](#creating-your-first-java-spring-boot--postgresql-project)
 - [Using APIs with .NET](APIs%20%26%20dotnet/README-APIs%26dotnet.md)
 - [Devpost](#devpost)
     - [How to Submit a Project](#how-to-submit-a-project)
@@ -227,6 +230,261 @@ PyGame is a game development library. It's a set of Python modules designed for 
 
 ## Creating your First PyGame Project
 Learn how to create a 2D game called **Space Protector** [here](GameDev%20&%20PyGame/README-GameDev&PyGame.md#readme-pygame-basics-and-space-protector-overview). The game involves players controlling a spaceship to defend themselves from incoming asteroids while earning points by destroying them.
+<br>
+
+# Databases with Java Spring Boot & PostgreSQL
+
+## What is a Database? Java Spring Boot? PostgreSQL?
+A **database** is an organized collection of data that can be easily accessed, managed, and updated. Think of it as a virtual filing system where your application stores information, such as user details or product listings. 
+
+**Spring Boot** is a Java framework that simplifies building web applications and APIs by automating configuration and reducing boilerplate code. It’s beginner-friendly, provides built-in tools for common tasks (like connecting to databases), and lets you focus on creating features instead of setup.
+
+**PostgreSQL** is a powerful, open-source relational database system. It’s beginner-friendly and supports SQL (Structured Query Language) for querying and managing data.
+
+## Creating your First Java Spring Boot & PostgreSQL project
+Let's try creating a simple web application where users can add, view, and delete items from a database.
+
+### **Tech Stack:**
+- **Backend:** Java Spring Boot
+- **Database:** PostgreSQL
+- **Tools:** IntelliJ IDEA (or your favorite IDE), Postman for API testing
+
+### Step 1: Set Up Your Environment
+
+1. **Install JDK:**
+   - Download and install Java Development Kit (JDK) from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html) or [OpenJDK](https://openjdk.org/).
+
+2. **Install PostgreSQL:**
+   - Download and install PostgreSQL from [postgresql.org](https://www.postgresql.org/).
+   - During installation, set a password for the `postgres` user and note it down.
+
+3. **Install Spring Boot Tools:**
+   - Use an IDE like IntelliJ IDEA or Eclipse.
+   - Install Maven (if not bundled with your IDE).
+
+4. **Postman (Optional):**
+   - Download Postman for testing your API: [Postman](https://www.postman.com/downloads/).
+
+### Step 2: Create a Spring Boot Project
+
+1. **Generate a Spring Boot Project:**
+   - Go to [Spring Initializr](https://start.spring.io/).
+   - Choose the following options:
+     - Project: **Maven**
+     - Language: **Java**
+     - Dependencies:
+       - Spring Web
+       - Spring Data JPA
+       - PostgreSQL Driver
+   - Click **Generate** and download the project.
+
+2. **Import the Project:**
+   - Open your IDE and import the project as a Maven project.
+
+### Step 3: Configure PostgreSQL
+
+1. **Create a Database:**
+   - Open the PostgreSQL command-line interface (psql) or a GUI tool like pgAdmin.
+   - Create a new database:
+     ```sql
+     CREATE DATABASE hackathon_db;
+     ```
+
+2. **Configure `application.properties`:**
+   In `src/main/resources/application.properties`, add your database configuration:
+   ```properties
+   spring.datasource.url=jdbc:postgresql://localhost:5432/hackathon_db
+   spring.datasource.username=postgres
+   spring.datasource.password=your_password
+
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+   ```
+
+### Step 4: Build Your First API Following Spring Boot Architecture
+Spring Boot follows a layered architecture to separate concerns and organize code effectively. Each layer has a distinct purpose and works together to deliver functionality.
+
+1. **Model Layer (Data Layer)**
+This layer defines the structure of your data and maps it to the database.
+
+**Purpose:** Represents the database table as a Java object. Each instance corresponds to a row in the database.
+
+**Example:**
+```java
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    public Item() {}
+
+    public Item(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+
+2. **Repository Layer (Data Access Layer)**
+This layer interacts directly with the database to perform CRUD operations.
+
+**Purpose:** Provides an abstraction over database queries, making data access easier. 
+
+**Connection:** Called by the Service Layer to fetch or save data. 
+
+**Example:**
+```java
+package com.example.demo.repository;
+
+import com.example.demo.model.Item;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {}
+```
+
+3. **Service Layer (Business Logic Layer)**
+This layer contains the application’s core logic and connects the Controller with the Repository.
+
+**Purpose:** Processes data from the repository before passing it to the controller or vice versa. 
+
+**Connection:** Acts as an intermediary between the Controller and Repository layers. 
+
+**Example:**
+```java
+package com.example.demo.service;
+
+import com.example.demo.model.Item;
+import com.example.demo.repository.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ItemService {
+
+    @Autowired
+    private ItemRepository itemRepository;
+
+    public List<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
+
+    public Item createItem(Item item) {
+        return itemRepository.save(item);
+    }
+
+    public void deleteItem(Long id) {
+        itemRepository.deleteById(id);
+    }
+}
+```
+
+4. **Controller Layer (API Layer)**
+This layer handles HTTP requests and sends responses back to the client.
+
+**Purpose:** Exposes API endpoints for the client to interact with the application. 
+
+**Connection:** Calls methods from the Service Layer to perform operations. 
+
+**Example:**
+```java
+package com.example.demo.controller;
+
+import com.example.demo.model.Item;
+import com.example.demo.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/items")
+public class ItemController {
+
+    @Autowired
+    private ItemService itemService;
+
+    @GetMapping
+    public List<Item> getAllItems() {
+        return itemService.getAllItems();
+    }
+
+    @PostMapping
+    public Item createItem(@RequestBody Item item) {
+        return itemService.createItem(item);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteItem(@PathVariable Long id) {
+        itemService.deleteItem(id);
+    }
+}
+```
+
+### **How the Layers Work Together**
+1. The **client** sends an HTTP request (e.g., `GET /api/items`) (ex client: frontend).
+2. The **Controller** handles the request and calls the **Service** to process it.
+3. The **Service** interacts with the **Repository** to fetch or manipulate data.
+4. The **Repository** queries the **database**, retrieves the result, and passes it back through the layers.
+5. The **Controller** sends a response back to the client.
+
+
+### Step 5: Test Your Application
+
+1. **Run the Application:**
+   - Run the `DemoApplication` class in your IDE.
+
+2. **Test with Postman:**
+   - **Get All Items:**
+     - Method: `GET`
+     - URL: `http://localhost:8080/api/items`
+   - **Create an Item:**
+     - Method: `POST`
+     - URL: `http://localhost:8080/api/items`
+     - Body (JSON):
+       ```json
+       {
+           "name": "Hackathon Project"
+       }
+       ```
+   - **Delete an Item:**
+     - Method: `DELETE`
+     - URL: `http://localhost:8080/api/items/1`
+
+### Next Steps
+- Add more features, such as user authentication or advanced queries.
+- Create a frontend to interact with your API (e.g., React.js, Vue.js).
+- Deploy your application using platforms like Heroku or AWS.
+
+### **Resources**
+- [Spring Boot Documentation](https://spring.io/guides)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Spring Boot Architecture](https://www.javatpoint.com/spring-boot-architecture)
+- [Postman Testing](https://www.guru99.com/postman-tutorial.html)
+- [Step by step guide](https://talesofdancingcurls.medium.com/spring-boot-with-postgresql-a-step-by-step-guide-c451848f0184)
+- [Connect React Frontend to Spring Boot Backend](https://www.dhiwise.com/post/a-step-by-step-guide-to-implementing-react-spring-boot) 
+
 <br>
 
 # Devpost
