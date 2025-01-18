@@ -22,6 +22,7 @@
     - [What is a Database? Spring Boot? PostgreSQL?](#what-is-a-database-java-spring-boot-postgresql)
     - [Creating your First Java Spring Boot & PostgreSQL project](#creating-your-first-java-spring-boot--postgresql-project)
 - [Using APIs with .NET](APIs%20%26%20dotnet/README-APIs%26dotnet.md)
+- [Working with Data/ML on Pandas and HuggingFace](#working-with-data-and-machine-learning-on-pandas-and-huggingface)
 - [Devpost](#devpost)
     - [How to Submit a Project](#how-to-submit-a-project)
     - [What to Include in Your Submission](#what-to-include-in-your-devpost-submission)
@@ -484,6 +485,179 @@ public class ItemController {
 - [Postman Testing](https://www.guru99.com/postman-tutorial.html)
 - [Step by step guide](https://talesofdancingcurls.medium.com/spring-boot-with-postgresql-a-step-by-step-guide-c451848f0184)
 - [Connect React Frontend to Spring Boot Backend](https://www.dhiwise.com/post/a-step-by-step-guide-to-implementing-react-spring-boot) 
+
+<br>
+
+# Working with Data and Machine Learning on Pandas and HuggingFace
+
+## Working with Data
+
+In our world today, we have an overflowing amount of data available. Analysis of such data can lead to useful insights and conclusions. Further, manipulating the data for a machine learning model (data preprocessing) is an important step. Some common tasks include: 
+
+- Handling null values (missing data) 
+- Removing outliers 
+- Scaling 
+- Encoding the data (handling categorical features) 
+
+## What is Pandas
+
+Pandas is a powerful Python library used for data manipulation and analysis. It’s essential for preparing and cleaning data, which is a crucial step in machine learning workflows. 
+
+Pandas provides two main data structures:
+- pandas.Series: A one-dimensional array, similar to a list.
+- pandas.DataFrame: A two-dimensional table, similar to an Excel spreadsheet.
+
+## Basic Operations on Pandas
+
+### 1. Install Pandas
+In your terminal (with a virtual environment activated if you prefer), use the following command to install panda: 
+
+`pip install pandas`
+
+### 2. Import Pandas
+
+In your python file, use the following import statement to import pandas: 
+
+`import pandas as pd`
+
+### 3. Loading Data 
+
+Pandas can load data from multiple file types: 
+
+Loading CSV file: `df = pd.read_csv('data.csv')`
+
+Loading Excel file: `df = pd.read_excel('data.xlsx')`
+
+Loading JSON file: `df = pd.read_json('data.json')`
+
+### 4. Exploring the Data
+
+Once the data is loaded, it’s important to explore it to understand its structure and identify issues.
+
+View the first few rows:
+
+`print(df.head())`
+
+Check the structure of the dataset:
+
+`print(df.info())`
+
+Summary statistics of numerical columns:
+
+`print(df.describe())`
+
+### 5. Handling Null Values
+
+Missing data is a common issue.
+
+To identify missing values:
+
+`print(df.isnull().sum())`
+
+There are two ways to deal with missing values: 
+
+1. Fill them (usually if it is a quantitative variable)
+
+`df['Column'] = df['Column'].fillna(df['Column'].mean())  # Replace with mean`
+`df['Column'] = df['Column'].fillna(method='ffill')  # Forward fill`
+`df['Column'] = df['Column'].fillna(method='bfill')  # Backward fill`
+
+2. Drop them 
+
+`df = df.dropna()  # Drop rows with missing values`
+
+`df = df.dropna(axis=1)  # Drop columns with missing values`
+
+### 6. Removing Outliers
+
+It is important to remove outliers because outliers can skew your analysis. A common method in removing outliers is using the IQR (interquartile range) definition, which is a statistical definition of outliers. 
+
+`Q1 = df['Column'].quantile(0.25)`
+
+`Q3 = df['Column'].quantile(0.75)`
+
+`IQR = Q3 - Q1`
+
+`lower_bound = Q1 - 1.5 * IQR`
+
+`upper_bound = Q3 + 1.5 * IQR`
+
+`df = df[(df['Column'] >= lower_bound) & (df['Column'] <= upper_bound)]`
+
+## Extra Steps for ML 
+
+### 1. Scaling the data
+
+Scaling ensures all numerical features have the same range, which is important for machine learning algorithms.
+
+There are two methods that you can choose from: 
+
+#### a) Standardization (z-score scaling) = Scales data values so that they have a mean of 0 and a standard deviation of 1. This technique is useful when the distribution of the data is known and normal.
+
+`from sklearn.preprocessing import StandardScaler`
+
+`scaler = StandardScaler()`
+
+`df[['Column1', 'Column2']] = scaler.fit_transform(df[['Column1', 'Column2']])`
+
+#### b) Normalization (min-max scaling) = Scales data values to a specific range, usually between 0 and 1. This technique is useful when the distribution of the data is unknown or non-normal.
+
+`from sklearn.preprocessing import MinMaxScaler`
+
+`scaler = MinMaxScaler()`
+
+`df[['Column1', 'Column2']] = scaler.fit_transform(df[['Column1', 'Column2']])`
+
+
+### 2. Encoding Categorical Features 
+
+Machine learning models often require numerical inputs. Therefore, we need to convert categorical columns (ex. gender, hair color) to numeric. Here are two common methods:
+
+Label Encoding: 
+
+`df['Category'] = df['Category'].astype('category').cat.codes`
+
+One-Hot Encoding:
+
+`df = pd.get_dummies(df, columns=['Category'], drop_first=True)`
+
+## Using HuggingFace Pretrained Models
+
+HuggingFace provides a library of pretrained models for tasks like text classification, translation, and more. 
+
+You can feed the data you have on your pandas dataframe into a HuggingFace model to produce outputs. 
+
+The easiest way to do this is to use the pipeline wrapper. For instance, here’s an example of how to use a dataset with a HuggingFace model for text classification:
+
+```
+from transformers import pipeline
+
+# Load pretrained pipeline for sentiment analysis
+classifier = pipeline("sentiment-analysis")
+
+# Example: Apply the model to a text column in the dataframe
+texts = df['TextColumn'].tolist()  # Convert text column to a list
+results = classifier(texts) # results will be a list of dictionaries with the category the text was classified as stored under the key 'label'
+
+# Add the predictions back to the dataframe
+predictions = [result['label'] for result in results]
+df['Predictions'] = predictions
+
+print(df.head())
+```
+
+You can find more information on the HuggingFace Website for Pipelines: https://huggingface.co/docs/transformers/en/main_classes/pipelines
+
+HuggingFace also offers a lot of other functionalities:
+
+- HuggingFace Datasets: Access thousands of ready-to-use datasets for tasks like text classification, summarization, and translation. Load datasets directly with datasets.load_dataset(). Use the many built-in functions for preprocessing. Take a look at: https://huggingface.co/docs/datasets/en/index
+
+- Transformers Library (Pretrained Models): A Python library that provides the tools to load, use, fine-tune, and train transformer-based models. Load and use specific pretrained models from the Model Hub for tasks like sentiment analysis, question answering, text generation, and image classification. Take a look at: https://huggingface.co/docs/transformers/en/index 
+    - This is one of the most popular uses for HuggingFace!
+
+- Model Hub: Explore and download over 100,000 pretrained models for NLP, computer vision, and audio tasks. Fine-tune or deploy models with ease, often requiring just a single line of code to load them. Take a look at: https://huggingface.co/docs/hub/en/models-the-hub
+
+If you don't know where to start, the pipelines tool is a great starting point!
 
 <br>
 
