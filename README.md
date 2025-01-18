@@ -7,6 +7,7 @@ If you’re stuck on anything, don’t be scared to ask for help from our mentor
 Check the **Table of Contents** for a comprehensive overview of the topics covered!
 
 # Table of Contents
+- [Github](#github)
 - [Figma & UI/UX Design](#figma--uiux-design)
     - [UI/UX Design]([#uiux-design)
     - [Figma](#figma)
@@ -44,6 +45,8 @@ Check the **Table of Contents** for a comprehensive overview of the topics cover
     - [What to Include in Your Submission](#what-to-include-in-your-devpost-submission)
     - [How to View Previous Projects](#how-to-view-previous-projects)    
 
+# Github
+Tutorial here: https://www.youtube.com/watch?si=EaZW9mRQfM7aUHfj&v=q-xOTDE85_4&feature=youtu.be
 
 # Figma & UI/UX Design
 
