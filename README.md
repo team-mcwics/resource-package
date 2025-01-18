@@ -14,7 +14,11 @@
     - [Getting started with React](#getting-started-with-react)
 - [Angular](#angular)
     - [How Angular Works](#how-angular-works)
-    - [Getting started with Angular](#getting-started-with-angular)
+    - [Getting started with Angular](#getting-started-with-angular) 
+- [GameDev with PyGame](#gamedev-with-pygame)
+    - [What is PyGame](#what-is-pygame)
+    - [Creating your First PyGame Project](#creating-your-first-pygame-project)
+- [Using APIs with .NET](APIs%20%26%20dotnet/README-APIs%26dotnet.md)
 - [Devpost](#devpost)
     - [How to Submit a Project](#how-to-submit-a-project)
     - [What to Include in Your Submission](#what-to-include-in-your-devpost-submission)
@@ -212,6 +216,17 @@ Angular is another powerful framework for building web applications. It is a Typ
 - [Net Ninja's Angular Tutorials](https://www.youtube.com/c/TheNetNinja)
 - [Academind's Angular Course on YouTube](https://www.youtube.com/@Academind)
 
+<br>
+
+# GameDev with PyGame
+
+### What is PyGame
+GameDev (also known as Game Development) is the process of creating video games, which involves design, programming, art, audio, and more. 
+
+PyGame is a game development library. It's a set of Python modules designed for writing video games. PyGame is ideal for beginners in programming and game development as it's user-friendly and built on python. In fact, Python's syntax is straightforward, making it easier to understand and use. PyGame is great as it provides functionalities like creating windows, drawing shapes, and managing user input, simplifying the game development process. It supports 2D graphics and allows for easy loading and rendering of images. It also handles sound effects and music, enabling the creation of fully-featured games. PyGame also includes an efficient event handling system. It can detect keyboard and mouse events, which are crucial for interactive gameplay. 
+
+## Creating your First PyGame Project
+Learn how to create a 2D game called **Space Protector** [here](TODO). The game involves players controlling a spaceship to defend themselves from incoming asteroids while earning points by destroying them.
 <br>
 
 # Devpost
