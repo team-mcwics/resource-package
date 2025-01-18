@@ -688,15 +688,14 @@ We will use Flask in this tutorial. Flask is a simple web framework for Python. 
 
 ## Table of contents
 
-1. [Other related project ideas](#other-related-project-ideas)
-2. [Prerequisites](#prerequisites)
-3. [A brief primer on Python projects](#projects-in-python)
-4. [Setting up a virtual environment (highly recommended)](#setting-up-a-virtual-environment)
-5. [Web servers](#web-servers)
-6. [Setting up a basic Flask server](#setting-up-a-basic-flask-server)
-7. [What now?](#what-now)
-8. [Setting up a database with Flask](#setting-up-a-database-with-flask)
-9. [More tutorials on Flask](#more-tutorials-on-flask)
+1. [Prerequisites](#prerequisites)
+2. [A brief primer on Python projects](#projects-in-python)
+3. [Setting up a virtual environment (highly recommended)](#setting-up-a-virtual-environment)
+4. [Web servers](#web-servers)
+5. [Setting up a basic Flask server](#setting-up-a-basic-flask-server)
+6. [What now?](#what-now)
+7. [Setting up a database with Flask](#setting-up-a-database-with-flask)
+8. [More tutorials on Flask](#more-tutorials-on-flask)
 
 ---
 
