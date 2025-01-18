@@ -697,10 +697,6 @@ We will use Flask in this tutorial. Flask is a simple web framework for Python. 
 
 ---
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
-
 ## Other related project ideas
 
 Django is a bit more complicated, but has more features than Flask. Check out the official Django site: [https://www.djangoproject.com/start](https://www.djangoproject.com/start)
@@ -733,9 +729,6 @@ Create an application with live updates (ex. for a multiplayer game or chatting)
 
 You can even use SocketIO with Flask: [https://flask-socketio.readthedocs.io/en/latest/getting_started.html](https://flask-socketio.readthedocs.io/en/latest/getting_started.html)
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## Prerequisites
 
@@ -758,9 +751,6 @@ with your current version of Python.
 2. Install pip, the Python package installer, if it is not already installed. You can check if pip is installed by running `pip --version` in your command line.
 3. Make sure you have an IDE installed, for example, VSCode: [https://code.visualstudio.com/](https://code.visualstudio.com/).
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## Projects in Python
 
@@ -825,9 +815,6 @@ if __name__ == "__main__":
 
 You might do this if you _don't_ want to run certain methods, for example while testing or debugging. If you place these methods inside of the `if __name__ == "main__"` block, they'll only be run if you execute the module file directly.
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## Setting up a virtual environment
 
@@ -905,10 +892,6 @@ This will return you to the global Python environment.
 
 By using a virtual environment, you can ensure that your project dependencies are isolated and do not interfere with other projects on your system.
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
-
 ## Web servers
 
 A web server is a software application that handles requests from clients (such as web browsers) and serves them web pages or other content. When you type a URL into your browser and hit enter, your browser sends a request to a web server, which then processes the request and sends back some content.
@@ -951,9 +934,6 @@ When the server receives a request, it processes it and sends back a response, w
 
 In the next sections, you will set up a Flask application that will be able to receive requests and send responses back.
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## Setting up a basic Flask server
 
@@ -1021,10 +1001,6 @@ You should see output indicating that the server is running, and you can visit `
 ```
 
 Now you have a basic Flask server up and running with multiple routes. If you want to see your `about` route, you can go to `http://127.0.0.1:5000/about`.
-
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## What now?
 
@@ -1101,9 +1077,6 @@ To test your API, run your application. Then, visit `http://127.0.0.1:5000/api/d
 }
 ```
 
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## Setting up a database with Flask
 
@@ -1177,10 +1150,6 @@ We can also use object-relational mapper (ORM) tools to make formatting our data
    ```
 
 Now you have a basic database set up with Flask and SQLAlchemy. You can expand this by adding more models and queries as needed.
-
-<div style="page-break-after: always; visibility: hidden"> 
-\pagebreak 
-</div>
 
 ## More tutorials on Flask
 
