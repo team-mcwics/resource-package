@@ -42,7 +42,7 @@ PyGame is a Python library designed for game development. It simplifies many tas
 ## Space Protector: Game Overview
 
 ### What is Space Protector?
-Space Protector is a 2D arcade-style game where players control a spaceship to shoot asteroids while avoiding collisions. The game incorporates core game development principles and demonstrates PyGame's features in action.
+Space Protector is a 2D arcade-style game where players control a spaceship to shoot asteroids while avoiding collisions. The game incorporates core game development principles and demonstrates PyGame's features in action. The entire source code of this game can be found at [spaceProtector.py](SpaceProtector/spaceProtector.py).
 
 ### Key Features
 - **Player Control:**
