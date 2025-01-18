@@ -15,6 +15,10 @@
 - [Angular](#angular)
     - [How Angular Works](#how-angular-works)
     - [Getting started with Angular](#getting-started-with-angular)
+- [Devpost](#devpost)
+    - [How to Submit a Project](#how-to-submit-a-project)
+    - [What to Include in Your Submission](#what-to-include-in-your-devpost-submission)
+    - [How to View Previous Projects](#how-to-view-previous-projects)    
 
 
 # Figma & UI/UX Design
@@ -207,3 +211,36 @@ Angular is another powerful framework for building web applications. It is a Typ
 - [freeCodeCamp](https://www.freecodecamp.org/)
 - [Net Ninja's Angular Tutorials](https://www.youtube.com/c/TheNetNinja)
 - [Academind's Angular Course on YouTube](https://www.youtube.com/@Academind)
+
+<br>
+
+# Devpost
+Devpost is the go-to platform for hackers to showcase their projects, connect with fellow hackers, and participate in hackathons. 
+
+### How to Submit a Project
+During Hack McWiCS, Devpost is the platform where you'll need to submit your hackathon project in order to be eligible for judging and prizes. Here's how:
+1. Create a [Devpost](https://devpost.com/) account (if you don't have one already).
+2. [Register](https://help.devpost.com/article/119-registering-for-a-hackathon) for the Hack McWiCS 2025 hackathon [here](https://hack-mcwics-2025.devpost.com/).
+3. [Create](https://help.devpost.com/article/122-how-to-enter-a-submission) a submission (check note below).
+4. [Submit](https://help.devpost.com/article/126-know-your-submission-steps) a project.
+5. You can [edit](https://help.devpost.com/article/123-how-to-edit-a-submission) a submission any time before the deadline.
+
+More information [here](https://help.devpost.com/category/20-submitting-to-a-hackathon)
+
+> [!NOTE]  
+> When first creating a project, only 1 team member needs to create a project and then that team member can invite all the other teammates to collaborate on the same project through the "Manage Team" tab. Each team member needs to create their own devpost account (step 1) and register for the Hack McWiCS 2025 hackathon devpost (step 2).
+
+### What to Include in your Devpost Submission
+
+Make sure to include the following in your Devpost submission:
+
+- **What your project does** – Briefly describe the purpose and functionality of your project.
+- **How you built your project** – Explain the technologies, tools, and frameworks you used, along with a high-level overview of the architecture and design.
+- **Link to your project** – Provide a link to the project repository, live demo, or relevant materials.
+- **Screenshots or a video of your project** – Include visuals to showcase the project in action, making it easier for others to understand what it looks like and how it works.
+
+### How to View Previous Projects
+You can also use Devpost to get inspiration for your next hack by exploring all of the projects submitted in previous editions of Hack McWiCS through the [project gallary](https://help.devpost.com/article/80-what-is-the-project-gallery).
+- [Hack McWiCS 2024](https://hack-mcwics-2024.devpost.com/)
+- [Hack McWiCS 2023](https://hack-mcwics-2023.devpost.com/)
+
