@@ -226,7 +226,7 @@ GameDev (also known as Game Development) is the process of creating video games,
 PyGame is a game development library. It's a set of Python modules designed for writing video games. PyGame is ideal for beginners in programming and game development as it's user-friendly and built on python. In fact, Python's syntax is straightforward, making it easier to understand and use. PyGame is great as it provides functionalities like creating windows, drawing shapes, and managing user input, simplifying the game development process. It supports 2D graphics and allows for easy loading and rendering of images. It also handles sound effects and music, enabling the creation of fully-featured games. PyGame also includes an efficient event handling system. It can detect keyboard and mouse events, which are crucial for interactive gameplay. 
 
 ## Creating your First PyGame Project
-Learn how to create a 2D game called **Space Protector** [here](TODO). The game involves players controlling a spaceship to defend themselves from incoming asteroids while earning points by destroying them.
+Learn how to create a 2D game called **Space Protector** [here](GameDev%20&%20PyGame/README-GameDev&PyGame.md#readme-pygame-basics-and-space-protector-overview). The game involves players controlling a spaceship to defend themselves from incoming asteroids while earning points by destroying them.
 <br>
 
 # Devpost
